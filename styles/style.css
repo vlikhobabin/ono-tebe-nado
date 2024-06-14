@@ -1,1 +1,335 @@
-/* место для вашего кода */
+/* Хэдер */
+.header {
+  display: grid;
+	/* Нескоько раз перепробовал различные варианты  (flex, inline-block)
+	максимально близко к макету получилось добиться только с помощью grid */
+  grid: 105px / 454px 1fr 266px;
+  justify-items: center;
+  margin: 92px 24px 96px;
+  font-weight: 400;
+  font-size: 18px;
+  color: #000;
+}
+
+.header__menu {
+  grid-column: 1/2;
+  grid-row: 1/2;
+  margin: 44px 0px 39px 26.52px;
+  justify-self: left;
+}
+
+.header__logo {
+  grid-column: 1/4;
+  grid-row: 1/2;
+}
+
+.header__logo-image {
+  width: 148px;
+  height: 105px;
+}
+
+.header__contacts {
+  grid-column: 3/4;
+  grid-row: 1/2;
+  margin: 5px 25.48px 2px 0px;
+}
+
+/* общий класс для шапки и подвала */
+.contacts {
+  width: 240.52px;
+  height: 98px;
+  line-height: 1.3;
+}
+
+/* можно было обернуть ссылки в блоки, а также ссылкам дать классы,
+но для разнообразия попробовал обратиться чз селектор тега */
+.contacts a {
+  display: block;
+}
+
+.header__menu-list {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.header__menu-item {
+  margin-right: 20px;
+  padding-left: 12px;
+}
+
+.header__menu-item::marker {
+  content: url("../images/list_marker.svg");
+	/* Можно было использовать 
+	 list-style-type: circle;
+	 но по пикселям такой вариант немного не попадал в макет
+	 для разнообразия попробовал использовать картинку 
+	*/ 
+}
+
+/* можно было присвоить отдельный класс, но прочитал, что есть и такой вариат
+без  padding-left: 0 для первого элемента списка не попадает в пиксель*/
+.header__menu-item:first-child {
+  padding-left: 0;
+}
+
+/* также для первого элемента в списке пришлось явно "убить" псевдоэлемент маркера */
+.header__menu-item:first-child::marker {
+  content: "";
+}
+
+/* Обложка */
+.cover {
+  height: 757px;
+  margin-bottom: 179px;
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.cover__image {
+  background: url("../images/cover.jpg") no-repeat center / 125%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+}
+.cover__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: #000;
+  opacity: 0.6;
+}
+
+.cover__title {
+  width: 1030px;
+  margin: 165px 0 140px 50px;
+  font-weight: 700;
+  font-size: 100px;
+  line-height: 1.1;
+  letter-spacing: 0.3em;
+}
+
+.more-letter-spacing {
+  letter-spacing: 0.6em;
+}
+
+.cover__title__text-center {
+	margin: 20px 20px 20px 286px;
+}
+
+.cover__title__text-right {
+  text-align: right;
+  line-height: 0.9;
+}
+
+.cover__subtitle {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  height: 51px;
+  margin-bottom: 51px;
+}
+
+.cover__subtitle__text {
+  font-weight: 400;
+  font-size: 22px;
+  width: 700px;
+  margin-left: 78px;
+}
+
+.cover__subtitle_min-letter-spacing {
+  letter-spacing: 0.8em;
+}
+
+.cover__subtitle_midle-letter-spacing {
+  letter-spacing: 0.9em;
+}
+
+.cover__subtitle__button {
+  margin-right: 51px;
+  font-weight: 500;
+  font-size: 22px;
+  text-transform: uppercase;
+  color: #fff;
+  width: 256px;
+  height: 51px;
+  border: 1px solid #fff;
+  background-color: transparent;
+}
+
+.lots {
+  height: 692px;
+  width: 1052px;
+  color: #fff;
+  margin: 146px 24px;
+}
+
+.lots__title {
+  font-weight: 700;
+  font-size: 40px;
+  text-transform: uppercase;
+  color: #000;
+  margin-left: 40px;
+  margin-bottom: 27px;
+}
+
+.lots__items {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  gap: 25px;
+}
+
+.lots__article {
+  position: relative;
+  width: 334px;
+  height: 563px;
+}
+
+.lots__article__background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+}
+
+/* можно было попробовать картинки указать в html, но показалось, что раз это бэграунд,
+то правильнее указывать из тут
+Не стал давать полное сложное имя класса - абсолютно не читаемо становиться в html
+полныое имя класса ожидалось, наверное, как  lots__article__background-image__image-01*/
+.image-01 {
+  background: url("../images/card-lot-01.jpg") no-repeat center / 161%;
+}
+.image-02 {
+  background: url("../images/card-lot-02.jpg") no-repeat center / 161%;
+}
+.image-03 {
+  background: url("../images/card-lot-03.jpg") no-repeat center / 161%;
+}
+
+.lots__article__background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: #000;
+  opacity: 0.6;
+}
+
+.lots__article__title {
+  margin: 51px 40px 0;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+
+.lots__article__content {
+  position: absolute;
+  bottom: 0;
+  margin: 0 40px 48px;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.lots__more {
+  font-weight: 400;
+  font-size: 20px;
+  color: #000;
+  text-decoration: underline;
+  margin-left: 40px;
+  margin-top: 30px;
+}
+
+/* Секция about */
+.about {
+  height: 595px;
+  width: 1052;
+  display: flex;
+  margin: 146px 24px;
+}
+
+.circle {
+  font-size: 0;
+  background: #000;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  margin: 35px 72px 320px 47px;
+}
+
+.logo-white {
+  display: inline-block;
+  width: 148px;
+  height: 114px;
+  margin: 64px 45.52px 62px 46.48px;
+}
+
+.about__article-column {
+  width: 693px;
+  height: 449px;
+}
+
+.about__article-column__title {
+  font-weight: 700;
+  font-size: 40px;
+  text-transform: uppercase;
+  margin-top: 133px;
+  margin-bottom: 100px;
+}
+
+/* Тут невозможно попасть текст пиксель-в-пиксель, т.к. в макете много вставок 
+с изменениями letter-spacing отдельных частей текста
+решил, что тут не принципиально, а итоговый текст может измениться */
+.about__article-column__content {
+  margin-top: 24px;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  height: 98px;
+  margin: 180px 50px 88px;
+  font-weight: 400;
+  font-size: 18px;
+  color: #000;
+}
+
+.footer__menu {
+  text-align: center;
+}
+
+.footer__menu-list {
+  list-style: none;
+}
+
+.footer__socials {
+  display: flex;
+  justify-content: space-between;
+  width: 240px;
+  height: 48px;
+}
+
+.footer__socials_image {
+  width: 48px;
+  height: 48px;
+}
