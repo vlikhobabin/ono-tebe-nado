@@ -1,8 +1,10 @@
 /* Хэдер */
 .header {
   display: grid;
+
 	/* Нескоько раз перепробовал различные варианты  (flex, inline-block)
 	максимально близко к макету получилось добиться только с помощью grid */
+
   grid: 105px / 454px 1fr 266px;
   justify-items: center;
   margin: 92px 24px 96px;
@@ -18,35 +20,6 @@
   justify-self: left;
 }
 
-.header__logo {
-  grid-column: 1/4;
-  grid-row: 1/2;
-}
-
-.header__logo-image {
-  width: 148px;
-  height: 105px;
-}
-
-.header__contacts {
-  grid-column: 3/4;
-  grid-row: 1/2;
-  margin: 5px 25.48px 2px 0px;
-}
-
-/* общий класс для шапки и подвала */
-.contacts {
-  width: 240.52px;
-  height: 98px;
-  line-height: 1.3;
-}
-
-/* можно было обернуть ссылки в блоки, а также ссылкам дать классы,
-но для разнообразия попробовал обратиться чз селектор тега */
-.contacts a {
-  display: block;
-}
-
 .header__menu-list {
   display: flex;
   flex-flow: row nowrap;
@@ -59,6 +32,7 @@
 
 .header__menu-item::marker {
   content: url("../images/list_marker.svg");
+
 	/* Можно было использовать 
 	 list-style-type: circle;
 	 но по пикселям такой вариант немного не попадал в макет
@@ -68,14 +42,61 @@
 
 /* можно было присвоить отдельный класс, но прочитал, что есть и такой вариат
 без  padding-left: 0 для первого элемента списка не попадает в пиксель*/
+
 .header__menu-item:first-child {
   padding-left: 0;
 }
 
 /* также для первого элемента в списке пришлось явно "убить" псевдоэлемент маркера */
+
 .header__menu-item:first-child::marker {
   content: "";
 }
+
+.link_active {
+	text-decoration: none;
+}
+
+.header__logo {
+	display: block;
+	/* Размеры выставил у картинки - так попадение в пиксель точнее */
+	/* width: 148px;
+  height: 105px; */
+  grid-column: 1/4;
+  grid-row: 1/2;
+}
+
+/* Сказано, что картинку не обязательно подгонять по размерам, но решил сделать по пикселю
+Если тут выставить размеры, то картинка попадает в пиксель */
+
+.header__logo-image {
+  width: 148px;
+  height: 105px;
+}
+
+.header__address {
+  grid-column: 3/4;
+  grid-row: 1/2;
+  margin: 5px 25.48px 2px 0px;
+}
+
+/* общий класс для шапки и подвала */
+
+.address {
+  width: 240.52px;
+  height: 98px;
+  line-height: 1.3;
+	font-style: normal;
+}
+
+/* можно было обернуть ссылки в блоки , а также ссылкам дать классы,
+или обратиться чз селектор тега 
+сделал как намекают в описании чз <br>*/
+
+/* .contacts a {
+  display: block;
+} */
+
 
 /* Обложка */
 .cover {
@@ -97,10 +118,11 @@
   height: 100%;
   z-index: -2;
 }
-.cover__overlay {
+.overlay {
   position: absolute;
-  top: 0;
-  left: 0;
+	inset: 0;
+  /* top: 0;
+  left: 0; */
   width: 100%;
   height: 100%;
   z-index: -1;
@@ -130,7 +152,7 @@
   line-height: 0.9;
 }
 
-.cover__subtitle {
+.cover__description {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -139,22 +161,24 @@
   margin-bottom: 51px;
 }
 
-.cover__subtitle__text {
+.cover__description-text {
   font-weight: 400;
   font-size: 22px;
   width: 700px;
   margin-left: 78px;
 }
 
-.cover__subtitle_min-letter-spacing {
+.min-letter-spacing {
   letter-spacing: 0.8em;
 }
 
-.cover__subtitle_midle-letter-spacing {
+.midle-letter-spacing {
   letter-spacing: 0.9em;
 }
 
-.cover__subtitle__button {
+/* Убирать  letter-spacing у последней буквы не стал - отрегулировал отступом по пикселю */
+
+.bet-button {
   margin-right: 51px;
   font-weight: 500;
   font-size: 22px;
@@ -167,13 +191,13 @@
 }
 
 .lots {
-  height: 692px;
-  width: 1052px;
+  /* height: 692px;
+  width: 1052px; */
   color: #fff;
   margin: 146px 24px;
 }
 
-.lots__title {
+.lots__heading {
   font-weight: 700;
   font-size: 40px;
   text-transform: uppercase;
@@ -182,17 +206,38 @@
   margin-bottom: 27px;
 }
 
-.lots__items {
-  display: flex;
-  flex-flow: row nowrap;
+.lots__card-list {
+	display: flex;
+  flex-flow: row wrap;
   justify-content: space-around;
   gap: 25px;
+
+	list-style: none;
+
 }
+
+.lots__card-list-item {
+	width: 334px;
+  min-height: 563px;
+	flex-grow: 1;
+}
+
+
+.card-link {
+	display: block;
+	height: 100%;
+	width: 100%;
+	text-decoration: none;
+	
+}
+
 
 .lots__article {
   position: relative;
-  width: 334px;
-  height: 563px;
+	height: 100%;
+	padding: 51px 40px 48px;
+  /* width: 334px;
+  height: 563px; */
 }
 
 .lots__article__background-image {
@@ -218,19 +263,8 @@
   background: url("../images/card-lot-03.jpg") no-repeat center / 161%;
 }
 
-.lots__article__background-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  background-color: #000;
-  opacity: 0.6;
-}
 
 .lots__article__title {
-  margin: 51px 40px 0;
   font-weight: 700;
   font-size: 22px;
   line-height: 1.2;
@@ -240,14 +274,14 @@
 
 .lots__article__content {
   position: absolute;
-  bottom: 0;
-  margin: 0 40px 48px;
+  bottom: 48px;
+	width: 254px;
   font-weight: 400;
   font-size: 20px;
   line-height: 1.2;
 }
 
-.lots__more {
+.lots__look-more-link {
   font-weight: 400;
   font-size: 20px;
   color: #000;
@@ -264,7 +298,7 @@
   margin: 146px 24px;
 }
 
-.circle {
+.about__circle {
   font-size: 0;
   background: #000;
   width: 240px;
@@ -273,7 +307,7 @@
   margin: 35px 72px 320px 47px;
 }
 
-.logo-white {
+.about__logo {
   display: inline-block;
   width: 148px;
   height: 114px;
@@ -320,6 +354,9 @@
 
 .footer__menu-list {
   list-style: none;
+}
+.footer__menu-item:first-child {
+	text-decoration: none;
 }
 
 .footer__socials {
