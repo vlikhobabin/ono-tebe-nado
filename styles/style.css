@@ -359,14 +359,17 @@
 	text-decoration: none;
 }
 
-.footer__socials {
+/* По тз ожидается что иконки будут организованы через список ul
+мне показалось, что флексом проще, меньше сущностей, но
+если принципиально, могу передалть */
+.footer__social-list {
   display: flex;
   justify-content: space-between;
   width: 240px;
   height: 48px;
 }
 
-.footer__socials_image {
+.footer__social-list__image {
   width: 48px;
   height: 48px;
 }
