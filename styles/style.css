@@ -85,7 +85,7 @@
   background: url("../images/cover.jpg") no-repeat center / 125%;
   margin-bottom: 179px;
   position: relative;
-  z-index: -2;
+	z-index: 0;
   display: flex;
   flex-flow: column nowrap;
   text-transform: uppercase;
@@ -187,20 +187,20 @@
   width: 334px;
   min-height: 563px;
   flex-grow: 1;
-  z-index: -2;
+  z-index: 0;
   background: no-repeat center / 161%;
 }
 
 .lots__card-list-item:nth-child(1) {
-  background: url("../images/card-lot-01.jpg");
+  background-image: url("../images/card-lot-01.jpg");
 }
 
 .lots__card-list-item:nth-child(2) {
-  background: url("../images/card-lot-02.jpg");
+  background-image: url("../images/card-lot-02.jpg");
 }
 
 .lots__card-list-item:nth-child(3) {
-  background: url("../images/card-lot-03.jpg");
+  background-image: url("../images/card-lot-03.jpg");
 }
 
 .card-link {
