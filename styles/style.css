@@ -1,10 +1,8 @@
 /* Хэдер */
 .header {
   display: grid;
-
-	/* Нескоько раз перепробовал различные варианты  (flex, inline-block)
+  /* Нескоько раз перепробовал различные варианты  (flex, inline-block)
 	максимально близко к макету получилось добиться только с помощью grid */
-
   grid: 105px / 454px 1fr 266px;
   justify-items: center;
   margin: 92px 24px 96px;
@@ -31,44 +29,38 @@
 }
 
 .header__menu-item::marker {
-  content: url("../images/list_marker.svg");
-
-	/* Можно было использовать 
-	 list-style-type: circle;
-	 но по пикселям такой вариант немного не попадал в макет
-	 для разнообразия попробовал использовать картинку 
-	*/ 
+  /* 
+	Переделал на символ, т.к. какртинка может не подгрузиться из-за качества интернета
+	content: url("../images/list_marker.svg");
+	 */
+  content: "○";
 }
 
 /* можно было присвоить отдельный класс, но прочитал, что есть и такой вариат
-без  padding-left: 0 для первого элемента списка не попадает в пиксель*/
+Без  padding-left: 0 для первого элемента списка не попадает в пиксель*/
 
 .header__menu-item:first-child {
   padding-left: 0;
 }
 
 /* также для первого элемента в списке пришлось явно "убить" псевдоэлемент маркера */
-
 .header__menu-item:first-child::marker {
   content: "";
 }
 
-.link_active {
-	text-decoration: none;
+.header__link_active {
+  text-decoration: none;
 }
 
 .header__logo {
-	display: block;
-	/* Размеры выставил у картинки - так попадение в пиксель точнее */
-	/* width: 148px;
-  height: 105px; */
+  display: block;
+  /* Размеры выставил у картинки - так попадение в пиксель точнее */
   grid-column: 1/4;
   grid-row: 1/2;
 }
 
 /* Сказано, что картинку не обязательно подгонять по размерам, но решил сделать по пикселю
 Если тут выставить размеры, то картинка попадает в пиксель */
-
 .header__logo-image {
   width: 148px;
   height: 105px;
@@ -84,45 +76,25 @@
 
 .address {
   width: 240.52px;
-  height: 98px;
   line-height: 1.3;
-	font-style: normal;
+  font-style: normal;
 }
-
-/* можно было обернуть ссылки в блоки , а также ссылкам дать классы,
-или обратиться чз селектор тега 
-сделал как намекают в описании чз <br>*/
-
-/* .contacts a {
-  display: block;
-} */
-
 
 /* Обложка */
 .cover {
-  height: 757px;
+  background: url("../images/cover.jpg") no-repeat center / 125%;
   margin-bottom: 179px;
   position: relative;
+  z-index: -2;
   display: flex;
   flex-flow: column nowrap;
   text-transform: uppercase;
   color: #fff;
 }
 
-.cover__image {
-  background: url("../images/cover.jpg") no-repeat center / 125%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -2;
-}
 .overlay {
   position: absolute;
-	inset: 0;
-  /* top: 0;
-  left: 0; */
+  inset: 0;
   width: 100%;
   height: 100%;
   z-index: -1;
@@ -131,11 +103,10 @@
 }
 
 .cover__title {
-  width: 1030px;
-  margin: 165px 0 140px 50px;
+  margin: 170px 0 136px 50px;
   font-weight: 700;
   font-size: 100px;
-  line-height: 1.1;
+  line-height: 1;
   letter-spacing: 0.3em;
 }
 
@@ -144,12 +115,13 @@
 }
 
 .cover__title__text-center {
-	margin: 20px 20px 20px 286px;
+  display: block;
+  margin: 27px 20px 20px 286px;
 }
 
 .cover__title__text-right {
-  text-align: right;
-  line-height: 0.9;
+  display: block;
+  margin-left: 584px;
 }
 
 .cover__description {
@@ -157,7 +129,6 @@
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-between;
-  height: 51px;
   margin-bottom: 51px;
 }
 
@@ -177,7 +148,6 @@
 }
 
 /* Убирать  letter-spacing у последней буквы не стал - отрегулировал отступом по пикселю */
-
 .bet-button {
   margin-right: 51px;
   font-weight: 500;
@@ -191,8 +161,6 @@
 }
 
 .lots {
-  /* height: 692px;
-  width: 1052px; */
   color: #fff;
   margin: 146px 24px;
 }
@@ -207,64 +175,50 @@
 }
 
 .lots__card-list {
-	display: flex;
+  display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
   gap: 25px;
-
-	list-style: none;
-
+  list-style: none;
 }
 
 .lots__card-list-item {
-	width: 334px;
+  position: relative;
+  width: 334px;
   min-height: 563px;
-	flex-grow: 1;
+  flex-grow: 1;
+  z-index: -2;
+  background: no-repeat center / 161%;
 }
 
+.lots__card-list-item:nth-child(1) {
+  background: url("../images/card-lot-01.jpg");
+}
+
+.lots__card-list-item:nth-child(2) {
+  background: url("../images/card-lot-02.jpg");
+}
+
+.lots__card-list-item:nth-child(3) {
+  background: url("../images/card-lot-03.jpg");
+}
 
 .card-link {
-	display: block;
-	height: 100%;
-	width: 100%;
-	text-decoration: none;
-	
+  display: block;
+  height: 100%;
+  width: 100%;
+  text-decoration: none;
 }
-
 
 .lots__article {
-  position: relative;
-	height: 100%;
-	padding: 51px 40px 48px;
-  /* width: 334px;
-  height: 563px; */
-}
-
-.lots__article__background-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   height: 100%;
-  z-index: -2;
+  padding: 51px 40px 48px;
 }
 
-/* можно было попробовать картинки указать в html, но показалось, что раз это бэграунд,
-то правильнее указывать из тут
-Не стал давать полное сложное имя класса - абсолютно не читаемо становиться в html
-полныое имя класса ожидалось, наверное, как  lots__article__background-image__image-01*/
-.image-01 {
-  background: url("../images/card-lot-01.jpg") no-repeat center / 161%;
-}
-.image-02 {
-  background: url("../images/card-lot-02.jpg") no-repeat center / 161%;
-}
-.image-03 {
-  background: url("../images/card-lot-03.jpg") no-repeat center / 161%;
-}
-
-
-.lots__article__title {
+.lots__article-title {
   font-weight: 700;
   font-size: 22px;
   line-height: 1.2;
@@ -272,16 +226,14 @@
   text-decoration: underline;
 }
 
-.lots__article__content {
-  position: absolute;
-  bottom: 48px;
-	width: 254px;
+.lots__article-content {
   font-weight: 400;
   font-size: 20px;
   line-height: 1.2;
 }
 
 .lots__look-more-link {
+  display: block;
   font-weight: 400;
   font-size: 20px;
   color: #000;
@@ -292,8 +244,7 @@
 
 /* Секция about */
 .about {
-  height: 595px;
-  width: 1052;
+  width: 1052px;
   display: flex;
   margin: 146px 24px;
 }
@@ -316,10 +267,9 @@
 
 .about__article-column {
   width: 693px;
-  height: 449px;
 }
 
-.about__article-column__title {
+.about__article-column-title {
   font-weight: 700;
   font-size: 40px;
   text-transform: uppercase;
@@ -330,7 +280,7 @@
 /* Тут невозможно попасть текст пиксель-в-пиксель, т.к. в макете много вставок 
 с изменениями letter-spacing отдельных частей текста
 решил, что тут не принципиально, а итоговый текст может измениться */
-.about__article-column__content {
+.about__article-column-content {
   margin-top: 24px;
   font-weight: 400;
   font-size: 20px;
@@ -341,7 +291,6 @@
 .footer {
   display: flex;
   justify-content: space-between;
-  height: 98px;
   margin: 180px 50px 88px;
   font-weight: 400;
   font-size: 18px;
@@ -356,20 +305,17 @@
   list-style: none;
 }
 .footer__menu-item:first-child {
-	text-decoration: none;
+  text-decoration: none;
 }
 
-/* По тз ожидается что иконки будут организованы через список ul
-мне показалось, что флексом проще, меньше сущностей, но
-если принципиально, могу передалть */
 .footer__social-list {
   display: flex;
   justify-content: space-between;
   width: 240px;
-  height: 48px;
+  list-style: none;
 }
 
-.footer__social-list__image {
+.footer__social-icon {
   width: 48px;
   height: 48px;
 }
